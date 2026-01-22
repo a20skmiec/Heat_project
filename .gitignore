@@ -1,0 +1,25 @@
+### PYTHON
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+### JUPYTER NOTEBOOK
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+### PYCHARM / IDE
+.idea/
+.vscode/
+*.swp
+*.bak
+### SYSTEMOWE
+Thumbs.db
+Desktop.ini
+.DS_Store
