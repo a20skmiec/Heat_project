@@ -1,9 +1,7 @@
 import numpy as np
 from scipy.sparse import lil_array, csr_matrix
 from scipy.sparse.linalg import spsolve
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-from IPython.display import HTML
+
 
 # siatka
 X, Y = np.meshgrid(np.arange(0, 5.01, 0.1), np.arange(0, 4.01, 0.1))
@@ -28,7 +26,7 @@ def main_matrix(ht, hx, len_flat_vec, D_air, D_wall, l_wall, l_window, l_air):
     beta_win = ((-l_window/l_air) * ht) / hx
     gamma_air = (D_air * ht) / (hx ** 2)
     gamma_wall = (D_wall * ht) / (hx ** 2)
-    A = lil_array((N, N))
+    A = lil_array((len_flat_vec, len_flat_vec))
     for j in range(Ny):
         for i in range(Nx):
             row = p(i, j)
@@ -88,8 +86,8 @@ def iteration_process(u0, sensor_point, ht, hx, T_max, len_flat_vec, D_air, D_wa
             b[radiator_ids] += rad_power * ht
 
         # Robin
-        b[outwall_ids] += beta_wall * outside_temp
-        b[window_ids] += beta_win * outside_temp
+        b[outwall_ids] -= beta_wall * outside_temp
+        b[window_ids] -= beta_win * outside_temp
 
         # Dirichlet
         b[neighbor_ids] = dirichlet_temp
@@ -99,19 +97,3 @@ def iteration_process(u0, sensor_point, ht, hx, T_max, len_flat_vec, D_air, D_wa
         T_all[t] = u
 
     return T_all
-
-# === Animacja ===
-fig, ax = plt.subplots(figsize=(6, 5))
-pcm = ax.pcolormesh(X, Y, T_all[0].reshape(Ny, Nx), shading='auto', cmap='jet', vmin=-5, vmax=30)
-cbar = fig.colorbar(pcm, ax=ax)
-cbar.set_label("Temperatura [°C]")
-ax.set_title("Symulacja ogrzewania")
-
-def update(frame):
-    pcm.set_array(T_all[frame].ravel())
-    ax.set_title(f"Czas: {frame*ht:.0f}s, Czujnik: {T_all[frame][sensor_id]:.1f}°C")
-    return pcm,
-
-ani = animation.FuncAnimation(fig, update, frames=range(0, steps, 2), interval=50, blit=False)
-plt.close()
-HTML(ani.to_jshtml())
