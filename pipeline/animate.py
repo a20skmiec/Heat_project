@@ -32,17 +32,16 @@ def wyniki(file):
         l_window=data['l_window'],
         l_air=data['l_air'])
 
-
 dane = read('data/dane.json')
 results = wyniki('data/dane.json')
-
 
 # ANIMACJA
 fig, ax = plt.subplots(figsize=(8, 6))
 
 # Mapa kolorów
 pcm = ax.pcolormesh(f.X, f.Y, results[0].reshape(f.Ny, f.Nx),
-                    shading='auto', cmap='inferno', vmin=-5, vmax=30)
+                    shading='auto', cmap='inferno', vmin=-5, vmax=35)
+print(results[0].min())
 
 cbar = fig.colorbar(pcm, ax=ax)
 cbar.set_label("Temperatura [°C]")
@@ -61,7 +60,7 @@ def update(frame):
     current_time = step_idx * dane['ht']
     temp_at_sensor = current_T[f.p(dane['sensor_pointx'], dane['sensor_pointy'])]
 
-    ax.set_title(f"Czas: {current_time / 60:.1f} min | Sensor: {temp_at_sensor:.1f}°C")
+    ax.set_title(f"Czas: {current_time//60} min | Sensor: {temp_at_sensor:.1f}°C")
     return pcm,
 
 

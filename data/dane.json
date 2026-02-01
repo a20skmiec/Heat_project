@@ -1,19 +1,19 @@
 {
-  "hx": 0.1,
-  "ht": 1,
-  "T_max": 3600,
+  "hx": 0.05,
+  "ht": 4,
+  "T_max": 6000,
   "l_air": 0.026,
-  "l_wall": 1.0,
-  "l_window": 0.8,
-  "D_air": 0.019,
-  "D_wall": 0.00025,
-  "outside_temp": -5.0,
-  "dirichlet_temp": 20.0,
-  "u0": 15.0,
-  "dest_temp": 22.0,
-  "rad_power": 100.0,
-  "sensor_pointx": 30,
-  "sensor_pointy": 25
+  "l_wall": 1.2,
+  "l_window": 0.9,
+  "D_air": 0.015,
+  "D_wall": 0.0003,
+  "outside_temp": -2.0,
+  "dirichlet_temp": 15.0,
+  "u0": 13.0,
+  "dest_temp": 23.0,
+  "rad_power": 20,
+  "sensor_pointx": 80,
+  "sensor_pointy": 60
 }
 
 
