@@ -5,6 +5,7 @@ from pathlib import Path
 
 # GŁÓWNA symulacja - obsługująca wczytanie pliku danych fizycznych i parametrów iteracji
 # oraz odpalenie samego schematu numerycznego
+# - ktory pozniej jest np. importowany do animacji w osobnym pliku
 def read(file):
     with open(file, 'r') as h:
         data = json.load(h)
