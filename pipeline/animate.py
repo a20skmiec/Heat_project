@@ -50,8 +50,9 @@ def anim(dane, results, html=False):
     # petla ktora wyswietla odpowiednio animacje w matplotlib lub ipynb html
     # w matplotlib brak paska pozwalającego na przesuwanie animacji samemu
     if html:
-        with open("animacja.html", "w") as h:
-            h.write(ani.to_jshtml())
+        ht = ani.to_jshtml()
+        plt.close(fig)
+        display(HTML(html))
     else:
         plt.show()
 
