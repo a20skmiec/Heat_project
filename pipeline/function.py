@@ -1,14 +1,16 @@
-import grid_setup as grid
+from pipeline import grid_setup as grid
 from scipy.sparse import lil_array
 
-# Funkcja mapująca (i, j) -> indeks liniowy
+# Funkcja mapująca (i, j) -> liczba - indeks w splaszczonym wektrze
 def p(x, y):
     return x + y * grid.Nx
 
-# kosntrukcja macierzy dla układów równań
+# kosntrukcja macierzy dla układów równań - niejawne
+# stricte macierzy - skłądniki które w iteracji są nzal od u
+# np. dodane ciepło przez grzejnik
 def main_matrix(ht, hx, len_flat_vec, D_air, D_wall, l_wall, l_window, l_air):
-    beta_wall = ((-l_wall/l_air) * ht) / hx
-    beta_win = ((-l_window/l_air) * ht) / hx
+    beta_wall = ((-l_wall/l_air) * ht) / hx   # do warunku robina na scianie
+    beta_win = ((-l_window/l_air) * ht) / hx   # do warunku robina na oknie
     gamma_air = (D_air * ht) / (hx ** 2)
     gamma_wall = (D_wall * ht) / (hx ** 2)
     A = lil_array((len_flat_vec, len_flat_vec))

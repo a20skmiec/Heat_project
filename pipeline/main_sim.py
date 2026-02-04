@@ -1,10 +1,10 @@
-import function as f
-import iteration as i
+from pipeline import iteration as i
 import json
-import grid_setup as grid
+from pipeline import grid_setup as grid
 from pathlib import Path
 
-
+# GŁÓWNA symulacja - obsługująca wczytanie pliku danych fizycznych i parametrów iteracji
+# oraz odpalenie samego schematu numerycznego
 def read(file):
     with open(file, 'r') as h:
         data = json.load(h)
@@ -33,6 +33,8 @@ def wyniki(file):
         l_air=data['l_air'])
 
 
+# pzowala zawsze znależć odpowiednia lokalizacje pliku -
+# nzal. od katalogu roboczego
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_FILE = BASE_DIR / "data" / "dane.json"
 

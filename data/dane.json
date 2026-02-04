@@ -1,19 +1,19 @@
 {
   "hx": 0.05,
-  "ht": 50,
-  "T_max": 2000,
+  "ht": 1,
+  "T_max": 500,
   "l_air": 0.026,
   "l_wall": 1.2,
   "l_window": 0.9,
   "D_air": 0.015,
   "D_wall": 0.0003,
-  "outside_temp": -2.0,
-  "dirichlet_temp": 15.0,
-  "u0": 17.0,
-  "dest_temp": 18.0,
+  "outside_temp": -5.0,
+  "dirichlet_temp": 18.0,
+  "u0": 14.0,
+  "dest_temp": 20.0,
   "rad_power": 30,
   "sensor_pointx": 80,
-  "sensor_pointy": 20
+  "sensor_pointy": 60
 }
 
 
