@@ -3,9 +3,10 @@ import matplotlib.animation as animation
 from IPython.display import HTML, display
 from pipeline import function as f
 from pipeline import grid_setup as grid
-
+from main_sim import dane, results
 
 # funkcja tworząca głowną animację zmiany ciepła na dwuwymiarowej siatce w zależnosci od czasu
+# ODPALENIE ANIMACJI NA SAMYM DOLE - chwilę trwa - 30 sek. -
 def anim(dane, results, html=False):
     #Temp_min = results.min() - może użyje w pcm na vmin
     #Temp_max = results.max() - jak wyżej vmax
@@ -49,11 +50,13 @@ def anim(dane, results, html=False):
     # petla ktora wyswietla odpowiednio animacje w matplotlib lub ipynb html
     # w matplotlib brak paska pozwalającego na przesuwanie animacji samemu
     if html:
-        html = ani.to_jshtml()
-        plt.close(fig)
-        display(HTML(html))
+        with open("animacja.html", "w") as h:
+            h.write(ani.to_jshtml())
     else:
         plt.show()
 
     return ani
+
+### DOCELOWA ANIMACJA
+# anim(dane, results)
 
